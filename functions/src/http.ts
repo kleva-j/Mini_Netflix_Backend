@@ -1,13 +1,28 @@
-import * as functions from 'firebase-functions';
-import * as express from 'express';
-import * as cors from 'cors';
+import { https } from 'firebase-functions';
+import bodyParser from 'body-parser';
+import express from 'express';
+import logger from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
+
+require('dotenv').config();
 
 import router from './routes';
 
 const app = express();
 
-// Enable/Install Middlewares
-app.use(cors({ origin: true }));
-app.use(router);
 
-export const api = functions.https.onRequest(app);
+// Enable/Install Middlewares
+app.use(helmet())
+   .use(logger('dev'))
+   .use(cors({ origin: true }))
+   .use(bodyParser.json())  
+   .use(bodyParser.urlencoded({ extended: true }))
+   .use(router)
+   .use('*', (_, res) => res.status(404)
+   .json({
+     status: 'failed',
+     data: 'Nothing to show here.',
+   }));
+
+export const api = https.onRequest(app);
