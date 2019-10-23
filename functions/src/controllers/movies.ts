@@ -1,14 +1,15 @@
+import { Request, Response } from 'express';
 import { sampleData } from '../models/sample';
 
 export class Movies {
-  static getMovies(req: any, res: any) {
+  static getMovies(req: Request, res: Response) {
     return res.status(200).json({
-      status: 'success',
+      success: false,
       data: sampleData,
     })
   }
 
-  static getSingleMovie(req: any, res: any) {
+  static getSingleMovie(req: Request, res: Response) {
     const { t } = req.query;
     const movie = t ? t.toLowerCase() : '';
     const moviesList = Object.keys(sampleData);
@@ -19,8 +20,8 @@ export class Movies {
       });
     }
     return res.status(404).json({
-      status: 'failed',
+      success: false,
       message: 'Movie not found',
-    })
+    });
   }
 }

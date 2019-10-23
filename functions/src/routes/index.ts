@@ -1,8 +1,10 @@
 import * as express from 'express';
-import movies from './movies';
+import moviesRoute from './movies';
+import usersRoute from './users';
 
 const router = express.Router();
 
-router.use(movies);
+router.use(moviesRoute);
+router.use('/user', usersRoute);
 
 export default router;
