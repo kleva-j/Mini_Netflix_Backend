@@ -1,27 +1,24 @@
 import { Request, Response } from 'express';
-import { sampleData } from '../models/sample';
+import { MovieSeries, TvSeries } from '../models/sample';
+import { filterOptions } from '../helpers/filter';
 
 export class Movies {
   static getMovies(req: Request, res: Response) {
+    let { params: { type } } = req;
     return res.status(200).json({
-      success: false,
-      data: sampleData,
+      status: 'success',
+      data: {
+        [type]: type === 'movies'? MovieSeries : TvSeries,
+      },
     })
   }
 
   static getSingleMovie(req: Request, res: Response) {
-    const { t } = req.query;
-    const movie = t ? t.toLowerCase() : '';
-    const moviesList = Object.keys(sampleData);
-    if (moviesList.indexOf(movie) !== -1) {
-      return res.status(200).json({
-        status: 'success',
-        result: sampleData[movie],
-      });
-    }
-    return res.status(404).json({
-      success: false,
-      message: 'Movie not found',
+    const result = [...(TvSeries.filter(filterOptions, req.query)), ...(MovieSeries.filter(filterOptions, req.query))]
+    return res.status(200).json({
+      status: 'success',
+      result,
+      'search parameters': req.query
     });
   }
 }

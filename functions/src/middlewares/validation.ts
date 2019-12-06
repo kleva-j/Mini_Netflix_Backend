@@ -27,7 +27,37 @@ const validateUsername = check('username')
   .isLength({ min: 5, max: 15 })
   .withMessage('Username must be at least 5 characters long and not more than 15.')
   .custom(value => !/\s/.test(value))
-  .withMessage('No spaces are allowed in the username.')
+  .withMessage('No spaces are allowed in the username.');
+
+const paramsList = ['movies', 'tv'];
+
+const validateParams = (req: Request, res: Response, next: Function) => {
+  const { params: { type} } = req;
+  return (paramsList.indexOf(type) === -1) ?
+    res.status(400).json({
+      status: 'Failed',
+      message: 'Media type can either be movies or tv.'
+    }) :
+    next();
+}
+
+const queryOptions = ['title', 'year', 'language', 'imdbRating', 'imdbID', 'type'];
+export const filterQuery = (req: Request, res: Response, next: Function) => {
+  const filteredQuery: any = {};
+  for (let query in req.query) {
+    const lCased = query.toLowerCase();
+    (typeof query) === 'string' && (queryOptions.indexOf(lCased) !== -1) && (filteredQuery[lCased] = req.query[query]);
+  }
+  req.query = filteredQuery;
+  if (Object.entries(req.query).length === 0 && req.query.constructor === Object) {
+    return res.status(400).json({
+      status: 'Failed',
+      message: 'Query Fields are invalid or empty.'
+    });
+  }
+  return next();
+}
 
 export const validateSignup = [validateUsername, validateEmail, validatePassword];
 export const validateLogin = [validateEmail, validatePassword];
+export const validateType = [validateParams];
