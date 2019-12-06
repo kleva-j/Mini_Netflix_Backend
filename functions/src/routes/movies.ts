@@ -1,13 +1,14 @@
 import * as express from 'express';
 import { Movies } from '../controllers';
+import { validateType, filterQuery } from '../middlewares/validation';
 
 const movies = express.Router();
 const { getMovies, getSingleMovie } = Movies;
 
-movies.route('/movies')
-  .get(getMovies);
+movies.route('/media/:type')
+  .get(validateType, getMovies);
 
-movies.route('/movies/search')
-  .get(getSingleMovie);
+movies.route('/search')
+  .get(filterQuery, getSingleMovie);
 
 export default movies;

@@ -11,7 +11,6 @@ import router from './routes';
 
 const app = express();
 
-
 // Enable/Install Middlewares
 app.use(helmet())
    .use(logger('dev'))
@@ -21,7 +20,7 @@ app.use(helmet())
    .use(router)
    .use('*', (_, res) => res.status(404)
    .json({
-     status: 'failed',
+     status: 'success',
      data: 'Nothing to show here.',
    }));
 
