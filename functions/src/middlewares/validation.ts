@@ -44,7 +44,7 @@ const validateParams = (req: Request, res: Response, next: Function) => {
 const queryOptions = ['title', 'year', 'language', 'imdbRating', 'imdbID', 'type'];
 export const filterQuery = (req: Request, res: Response, next: Function) => {
   const filteredQuery: any = {};
-  for (let query in req.query) {
+  for (const query in req.query) {
     const lCased = query.toLowerCase();
     (typeof query) === 'string' && (queryOptions.indexOf(lCased) !== -1) && (filteredQuery[lCased] = req.query[query]);
   }

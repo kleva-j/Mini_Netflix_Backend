@@ -1,14 +1,15 @@
 import * as express from 'express';
 import { Movies } from '../controllers';
 import { validateType, filterQuery } from '../middlewares/validation';
+import { CacheMiddleware } from '../middlewares/cacheMiddleware';
 
 const movies = express.Router();
 const { getMovies, getSingleMovie } = Movies;
 
 movies.route('/media/:type')
-  .get(validateType, getMovies);
+  .get(validateType, CacheMiddleware(10), getMovies);
 
 movies.route('/search')
-  .get(filterQuery, getSingleMovie);
+  .get(filterQuery, CacheMiddleware(10), getSingleMovie);
 
 export default movies;
