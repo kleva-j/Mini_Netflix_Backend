@@ -7,9 +7,9 @@ const movies = express.Router();
 const { getMovies, getSingleMovie } = Movies;
 
 movies.route('/media/:type')
-  .get(validateType, CacheMiddleware(10), getMovies);
+  .get(validateType, CacheMiddleware(60), getMovies);
 
 movies.route('/search')
-  .get(filterQuery, CacheMiddleware(10), getSingleMovie);
+  .get(filterQuery, CacheMiddleware(60), getSingleMovie);
 
 export default movies;
