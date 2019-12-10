@@ -4,10 +4,10 @@ import { filterOptions } from '../helpers/filter';
 
 export class Movies {
   static getMovies(req: Request, res: Response) {
-    let { params: { type } } = req;
+    const { params: { type } } = req;
     return res.status(200).json({
       status: 'success',
-      data: {
+      result: {
         [type]: type === 'movies'? MovieSeries : TvSeries,
       },
     })
