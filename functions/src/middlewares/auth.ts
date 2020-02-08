@@ -1,6 +1,4 @@
-import services from '../services';
-
-const { admin } = services;
+import admin from '../services';
 
 const getAuthToken = (req: any, res: any, next: Function) => {
   if (

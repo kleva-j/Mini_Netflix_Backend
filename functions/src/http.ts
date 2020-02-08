@@ -15,7 +15,7 @@ const app = express();
 app.use(helmet())
    .use(logger('dev'))
    .use(cors({ origin: true }))
-   .use(bodyParser.json())  
+   .use(bodyParser.json())
    .use(bodyParser.urlencoded({ extended: true }))
    .use(router)
    .use('*', (_, res) => res.status(404)

@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import services from '../services';
-
-const { admin } = services;
+import admin from '../services';
 
 export class User {
   static async registerUser(req: Request, res: Response) {
