@@ -7,7 +7,9 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "8"
@@ -23,16 +25,18 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-validator": "^6.2.0",
+    "express-validator": "^6.4.0",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.1.0",
-    "helmet": "^3.21.1",
+    "helmet": "^3.22.0",
     "morgan": "^1.9.1",
-    "node-cache": "^5.1.0"
+    "node-cache": "^5.1.0",
+    "snyk": "^1.323.1"
   },
   "devDependencies": {
     "tslint": "^5.20.1",
     "typescript": "^3.2.2"
   },
-  "private": true
+  "private": true,
+  "snyk": true
 }
