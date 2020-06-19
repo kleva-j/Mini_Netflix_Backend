@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
     "firebase-admin": "^8.12.1",
-    "firebase-functions": "^3.6.1",
+    "firebase-functions": "^3.6.2",
     "helmet": "^3.22.0",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.0",
