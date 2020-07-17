@@ -31,7 +31,7 @@
     "helmet": "^3.23.2",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.1",
-    "snyk": "^1.348.2"
+    "snyk": "^1.349.0"
   },
   "devDependencies": {
     "tslint": "^5.20.1",
