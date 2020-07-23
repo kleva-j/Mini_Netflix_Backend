@@ -30,7 +30,7 @@
     "firebase-functions": "^3.7.0",
     "helmet": "^3.23.3",
     "morgan": "^1.10.0",
-    "node-cache": "^5.1.1",
+    "node-cache": "^5.1.2",
     "snyk": "^1.349.0"
   },
   "devDependencies": {
