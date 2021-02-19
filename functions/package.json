@@ -17,21 +17,21 @@
   "main": "lib/index.js",
   "dependencies": {
     "@types/cors": "^2.8.8",
-    "@types/express": "^4.17.8",
+    "@types/express": "^4.17.9",
     "@types/helmet": "0.0.48",
     "@types/morgan": "^1.9.2",
-    "@types/node": "^12.19.3",
+    "@types/node": "^12.19.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
-    "firebase-admin": "^9.3.0",
+    "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.11.0",
     "helmet": "^3.23.3",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
-    "snyk": "^1.422.0"
+    "snyk": "^1.425.4"
   },
   "devDependencies": {
     "tslint": "^5.20.1",
